@@ -1,0 +1,41 @@
+body
+{
+    background-color: #55585c;
+}
+
+.center
+{
+    min-height: 100%;  /* Fallback for browsers which do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one */
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+#mainBtn
+{
+    height: 25vh;
+    width: 100vw;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 15vmin;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+
+    background-color: #2084be;
+
+}
+
+#mainBtn:hover
+{
+    background-color: #3372b9;
+}
+#mainBtn:active
+{
+    background-color: #1b5096;
+}

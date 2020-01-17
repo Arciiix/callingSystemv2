@@ -1,1 +1,4 @@
 project/receiver/music_example
+sender/node_modules
+receiver/node_modules
+hosting.txt
