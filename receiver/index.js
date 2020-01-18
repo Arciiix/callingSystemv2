@@ -1,5 +1,5 @@
 const port = 3824; //Port
-const url = "https://wolacz.herokuapp.com"; //Change it to yours!
+const url = "http://localhost:5433"; //Change it to yours!
 
 
 
