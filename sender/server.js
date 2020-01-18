@@ -10,7 +10,7 @@ const port = process.env.PORT || localPort; //Set port to local port (look highe
 
 
 
-app.use(express.static('../sender/'));
+app.use(express.static('./site/'));
 
 
 
@@ -49,6 +49,10 @@ io.on('connection', socket =>
     socket.on('received', () =>
     {
         io.emit('done');
-    })
+    });
+
+
+    console.log("Client connected");
+
 }
 );
