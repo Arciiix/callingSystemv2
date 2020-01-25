@@ -1,5 +1,5 @@
 const port = 3824; //Port
-const url = "http://localhost:5433"; //Change it to yours!
+const url = "http://192.168.0.120:5433"; //Change it to yours!
 
 
 
