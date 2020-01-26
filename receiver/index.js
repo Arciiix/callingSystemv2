@@ -3,7 +3,6 @@ const url = "http://192.168.0.120:5433"; //Change it to yours!
 
 
 
-
 const socket = require('socket.io-client');
 
 const io = socket(url);
@@ -22,14 +21,22 @@ const open = require('open');
 
 const ip = require("ip");
 
-let openedWindow;
+let message;
 
-io.on('request', async () =>
+io.on('request', async (data) =>
 {
 //Sending info, that I've received it!
 io.emit('received');
 isPlaying = true;
-consoleMessage(`WOŁANIE!`);
+if(data != '' || data != undefined)
+{
+    message = data;
+}
+else
+{
+    message = '';
+}
+consoleMessage(`WOŁANIE! WIADOMOŚĆ: ${message}`);
 
 //Playing song
 player.play({
@@ -41,6 +48,11 @@ player.play({
 
 });
 
+io.on('whatIsTheMessage', () =>
+{
+    io.emit('messageIs', message);
+    message = null;
+})
 
 const server = app.listen(port, () =>
 {
@@ -59,16 +71,23 @@ app.get('/off', (req, res, next) =>
 {
     if(isPlaying)
     {
-    consoleMessage(`Zawołano: ${new Date}`);
+    consoleMessage(`Zawołano: ${new Date}, wiadomość: ${message}`);
+    message = undefined;
     player.stop();
     isPlaying = false;
     res.send("turned off");
+    io.emit("turnedOff");
     }
+    next();
 })
 
 
 app.use(express.static('../receiver/'));
 
+app.get("/message", (req, res, next) => 
+{
+    res.sendFile(__dirname + '/message.html');
+});
 
 app.get("/", (req, res, next) =>
 {

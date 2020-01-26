@@ -4,7 +4,13 @@ const socket = io();
 let text = null;
 let timer;
 
+let isMessage = false;
+
 button.addEventListener('click', send);
+document.getElementById('messBtn').addEventListener('click', () =>
+{
+    window.location.href = "message";
+})
 
 function send()
 {
@@ -18,6 +24,8 @@ function send()
     let parent = button.parentElement;
     parent.appendChild(text);
     button.remove();
+    document.getElementById("messBtn").remove();
+    document.getElementsByClassName('center')[0].style.justifyContent = 'center';
 
 }
 
@@ -34,4 +42,25 @@ socket.on('done', () =>
 {
     text.innerText = "Odebrano!";
     clearTimeout(timer);
-})
+});
+
+socket.on('messageIsComingSender', () =>
+{
+text.innerText = "Pisanie wiadomości...";
+isMessage = true;
+});
+
+socket.on('messageSender', data =>
+{
+    text.innerText = `Wiadomość: ${data}`;
+    text.style.fontSize = '10vmin';
+});
+
+
+socket.on('off', () =>
+{   
+    if(!isMessage)
+    {
+    text.innerText = "Przeczytano!";
+    }
+});

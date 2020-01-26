@@ -13,6 +13,10 @@ const port = process.env.PORT || localPort; //Set port to local port (look highe
 app.use(express.static('./site/'));
 
 
+app.get("/message", (req, res, next) => 
+{
+    res.sendFile(__dirname + '/message.html');
+});
 
 
 app.get("/", (req, res, next) =>
@@ -43,14 +47,50 @@ io.on('connection', socket =>
     //On send button clicked
     socket.on('send', data =>
     {
-        io.emit('request'); //Let sender know, that server's received a request and send it to receiver
+        io.emit('request', data); //Let sender know, that server's received a request and send it to receiver
+    });
+
+    //On message read request
+    socket.on('isThereAMessage', () =>
+    {
+        io.emit('whatIsTheMessage');
+    });
+    socket.on('messageIs', data =>
+    {
+        if(data != '' || data != undefined)
+        {
+            io.emit('messageToDisplay', data);
+        }
+    });
+
+    socket.on('turnedOff', () =>
+    {
+        io.emit("off");
     })
+
     //When receiver receives it
     socket.on('received', () =>
     {
         io.emit('done');
     });
 
+    //On message to sender
+    socket.on('messageToSender', data =>
+    {
+        io.emit('messageSender', data);
+        console.log("Message to sender has been sent!");
+    });
+
+    //On starting typing a message to sender (if data === true, to sender)
+    socket.on('messageBegan', (data) =>
+    {
+        if(data)
+        {
+            io.emit('messageIsComingSender');
+            console.log("Message to sender has began");
+        }
+
+    });
 
     console.log("Client connected");
 

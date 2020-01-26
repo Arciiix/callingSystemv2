@@ -10,20 +10,20 @@ body
   
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
 
 }
 
-#mainBtn
+.btn
 {
     height: 25vh;
-    width: 100vw;
+    width: 45vw;
 
     border: none;
     border-radius: 10px;
 
-    font-size: 15vmin;
+    font-size: 10vmax;
     font-family: 'Roboto', sans-serif;
     color: #ffffff;
 
@@ -31,14 +31,20 @@ body
 
 }
 
-#mainBtn:hover
+#messBtn
+{
+    font-size: 5vmax;
+}
+
+.btn:hover
 {
     background-color: #3372b9;
 }
-#mainBtn:active
+.btn:active
 {
     background-color: #1b5096;
 }
+
 
 .infoText
 {

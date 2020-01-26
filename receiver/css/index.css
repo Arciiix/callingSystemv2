@@ -10,32 +10,46 @@ body
   
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
 
 }
+#header
+{
+    font-size: 10vmin;
+    font-family: 'Roboto', sans-serif;
+    color: white;
 
-#mainBtn
+    text-align: center;
+}
+.btn
 {
     height: 25vh;
-    width: 100vw;
+    width: 45vw;
 
     border: none;
     border-radius: 10px;
 
-    font-size: 15vmin;
+    font-size: 10vmax;
     font-family: 'Roboto', sans-serif;
     color: #ffffff;
+
+    margin-top: -15vh;
 
     background-color: #2084be;
 
 }
 
-#mainBtn:hover
+#messBtn
+{
+    font-size: 5vmax;
+}
+
+.btn:hover
 {
     background-color: #3372b9;
 }
-#mainBtn:active
+.btn:active
 {
     background-color: #1b5096;
 }
