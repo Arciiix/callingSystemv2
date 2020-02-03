@@ -4,10 +4,7 @@ const app = express();
 
 
 
-//DEV
-const localPort = 2142;
-
-//const localPort = 5433; //This is a port, that will be used when deploying app on local machine.
+const localPort = 5433; //This is a port, that will be used when deploying app on local machine.
 
 const port = process.env.PORT || localPort; //Set port to local port (look higher) or auto (when on hosting)
 

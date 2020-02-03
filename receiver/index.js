@@ -1,9 +1,5 @@
-//DEV
-const port = 8584;
-//const port = 3824; //Port
-//const url = "http://192.168.0.120:5433"; //Change it to yours!
-const url = "http://localhost:2142";
-//DEV
+const port = 3824; //Port
+const url = "http://192.168.0.120:5433"; //Change it to yours!
 
 
 const socket = require('socket.io-client');

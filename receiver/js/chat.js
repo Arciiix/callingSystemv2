@@ -1,7 +1,4 @@
-//DEV
-const server = "http://localhost:2142";
-
-//const server = "http://192.168.0.120:5433";
+const server = "http://192.168.0.120:5433";
 
 const socket = io(server);
 
