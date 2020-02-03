@@ -4,10 +4,12 @@ const app = express();
 
 
 
-const localPort = 5433; //This is a port, that will be used when deploying app on local machine.
+//DEV
+const localPort = 2142;
+
+//const localPort = 5433; //This is a port, that will be used when deploying app on local machine.
 
 const port = process.env.PORT || localPort; //Set port to local port (look higher) or auto (when on hosting)
-
 
 
 app.use(express.static('./site/'));
@@ -26,6 +28,10 @@ app.get("/", (req, res, next) =>
     
 });
 
+app.get("/chat", (req, res, next) =>
+{
+res.sendFile(__dirname + '/site/chat.html');
+});
 
 app.use((req, res, next) =>
 {
@@ -90,6 +96,21 @@ io.on('connection', socket =>
             console.log("Message to sender has began");
         }
 
+    });
+
+    //Chat
+
+    //On new message
+    socket.on('newMessage', data =>
+    {
+        io.emit("messageIncoming", data);
+        console.log(`Message: "${data.body}" with a id ${data.id}`);
+    });
+
+    //On enter on chat website
+    socket.on('wantsChat', () =>
+    {
+        io.emit("startChat");
     });
 
     console.log("Client connected");

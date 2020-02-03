@@ -1,6 +1,9 @@
-const port = 3824; //Port
-const url = "http://192.168.0.120:5433"; //Change it to yours!
-
+//DEV
+const port = 8584;
+//const port = 3824; //Port
+//const url = "http://192.168.0.120:5433"; //Change it to yours!
+const url = "http://localhost:2142";
+//DEV
 
 
 const socket = require('socket.io-client');
@@ -71,7 +74,7 @@ app.get('/off', (req, res, next) =>
 {
     if(isPlaying)
     {
-    consoleMessage(`Zawołano: ${new Date}, wiadomość: ${message}`);
+    consoleMessage(`Zawołano: ${new Date}`);
     message = undefined;
     player.stop();
     isPlaying = false;
@@ -84,9 +87,9 @@ app.get('/off', (req, res, next) =>
 
 app.use(express.static('../receiver/'));
 
-app.get("/message", (req, res, next) => 
+app.get("/chat", (req, res, next) => 
 {
-    res.sendFile(__dirname + '/message.html');
+    res.sendFile(__dirname + '/chat.html');
 });
 
 app.get("/", (req, res, next) =>

@@ -56,6 +56,12 @@ socket.on('messageSender', data =>
     text.style.fontSize = '10vmin';
 });
 
+socket.on('startChat', () =>
+{
+    window.location.href = 'chat';
+    console.log("chat i love godf");
+})
+
 
 socket.on('off', () =>
 {   

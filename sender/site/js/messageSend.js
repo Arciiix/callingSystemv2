@@ -58,6 +58,12 @@ socket.on('messageSender', data =>
 });
 
 
+socket.on('startChat', () =>
+{
+    window.location.href = 'chat';
+    console.log("chat i love godf");
+})
+
 socket.on('off', () =>
 {
     if(!isMessage)

@@ -14,7 +14,12 @@ await fetch('/off');
 //When clicked the second button, redirecting to site where you can send message.
 document.querySelector('#messBtn').addEventListener('click', () =>
 {
-document.location.href = 'message';
+fetch('/off')
+.then(() =>
+{
+    document.location.href = 'chat';
+});
+
 });
 
 //Check, is there a message
